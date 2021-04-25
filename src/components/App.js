@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import theme from './ui/Theme';
 import Header from './ui/Header';
+import Footer from './ui/Footer';
 
 const App = () => {
   return (
@@ -11,7 +12,11 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route exact path="/" component={() => <div>Home</div>} />
+          <Route
+            exact
+            path="/"
+            component={() => <div style={{ height: '2000px' }}>Home</div>}
+          />
           <Route exact path="/services" component={() => <div>Services</div>} />
           <Route
             exact
@@ -33,6 +38,7 @@ const App = () => {
           <Route exact path="/contact" component={() => <div>Contact</div>} />
           <Route exact path="/estimate" component={() => <div>Estimate</div>} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
