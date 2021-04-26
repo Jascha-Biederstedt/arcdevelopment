@@ -10,6 +10,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileIcon from '../assets/mobileIcon.svg';
+import websiteIcon from '../assets/websiteIcon.svg';
 
 //****************************************************
 // STYLES
@@ -238,8 +239,48 @@ const LandingPage = () => {
           <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
             <img
               className={classes.icon}
-              alt="Custom Software Icon"
+              alt="Mobile App Development Icon"
               src={mobileIcon}
+            />
+          </Grid>
+        </Grid>
+
+        {/*----- Website Development Block -----*/}
+
+        <Grid
+          className={classes.serviceContainer}
+          container
+          justify={matchesSM ? 'center' : undefined}
+          direction="row"
+        >
+          <Grid
+            item
+            style={{
+              marginLeft: matchesSM ? 0 : '5em',
+              textAlign: matchesSM ? 'center' : undefined,
+            }}
+          >
+            <Typography variant="h4">Website Development</Typography>
+            <Typography className={classes.subtitle} variant="subtitle1">
+              Reach More. Discover More. Sell More.
+            </Typography>
+            <Typography variant="subtitle1">
+              Optimized for Search Engines, built for speed.
+            </Typography>
+            <Button className={classes.learnButton} variant="outlined">
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.primaryColor}
+              />
+            </Button>
+          </Grid>
+          <Grid item>
+            <img
+              className={classes.icon}
+              alt="Website Development Icon"
+              src={websiteIcon}
             />
           </Grid>
         </Grid>
