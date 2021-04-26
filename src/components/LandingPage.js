@@ -9,6 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileIcon from '../assets/mobileIcon.svg';
 
 //****************************************************
 // STYLES
@@ -162,7 +163,7 @@ const LandingPage = () => {
           </Grid>
         </Grid>
 
-        {/*----- Services Block -----*/}
+        {/*----- Custom Software Block -----*/}
 
         <Grid
           className={classes.serviceContainer}
@@ -199,6 +200,46 @@ const LandingPage = () => {
               className={classes.icon}
               alt="Custom Software Icon"
               src={customSoftwareIcon}
+            />
+          </Grid>
+        </Grid>
+
+        {/*----- Mobile App Development Block -----*/}
+
+        <Grid
+          className={classes.serviceContainer}
+          container
+          justify={matchesSM ? 'center' : 'flex-end'}
+          direction="row"
+        >
+          <Grid
+            item
+            style={{
+              textAlign: matchesSM ? 'center' : undefined,
+            }}
+          >
+            <Typography variant="h4">Mobile App Development</Typography>
+            <Typography className={classes.subtitle} variant="subtitle1">
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant="subtitle1">
+              Integrate your web experience or create a standalone app
+              {matchesSM ? null : <br />}with either mobile platform.
+            </Typography>
+            <Button className={classes.learnButton} variant="outlined">
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.primaryColor}
+              />
+            </Button>
+          </Grid>
+          <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }}>
+            <img
+              className={classes.icon}
+              alt="Custom Software Icon"
+              src={mobileIcon}
             />
           </Grid>
         </Grid>
