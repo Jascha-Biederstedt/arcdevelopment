@@ -1,16 +1,70 @@
 import React, { useState } from 'react';
 import Lottie from 'react-lottie';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonArrow from './ui/ButtonArrow';
+import Typography from '@material-ui/core/Typography';
 
 import animationData from '../animations/landinganimation/data';
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+  animation: {
+    maxWidth: '50em',
+    minWidth: '21em',
+    marginTop: '2em',
+    marginLeft: '10%',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '30em',
+    },
+  },
+  estimateButton: {
+    ...theme.typography.estimate,
+    backgroundColor: theme.palette.common.secondaryColor,
+    borderRadius: 50,
+    height: 45,
+    width: 145,
+    marginRight: 40,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light,
+    },
+  },
+  buttonContainer: {
+    marginTop: '1em',
+  },
+  learnButtonHero: {
+    borderColor: theme.palette.common.primaryColor,
+    color: theme.palette.common.primaryColor,
+    borderWidth: 2,
+    textTransform: 'none',
+    borderRadius: 50,
+    fontFamily: 'Roboto',
+    fontWeight: 'bold',
+    fontSize: '0.9rem',
+    height: 45,
+    width: 145,
+  },
+  mainContainer: {
+    marginTop: '5em',
+    [theme.breakpoints.down('md')]: {
+      marginTop: '3em',
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '2em',
+    },
+  },
+  heroTextContainer: {
+    minWidth: '21.5em',
+    marginLeft: '1em',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 0,
+    },
+  },
+}));
 
 const LandingPage = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const defaultOptions = {
     loop: true,
@@ -23,28 +77,50 @@ const LandingPage = () => {
 
   return (
     <>
-      <Grid container direction="column">
+      <Grid className={classes.mainContainer} container direction="column">
         <Grid item>
-          <Grid container direction="row">
-            <Grid item>
-              <div>
+          <Grid
+            container
+            justify="flex-end"
+            alignItems="center"
+            direction="row"
+          >
+            <Grid className={classes.heroTextContainer} sm item>
+              <Typography align="center" variant="h2">
                 Bringing West Coast Technology
                 <br />
                 to the Midwest
-              </div>
-              <Grid container direction="row">
+              </Typography>
+              <Grid
+                className={classes.buttonContainer}
+                container
+                justify="center"
+                direction="row"
+              >
                 <Grid item>
-                  <Button variant="contained">Free Estimate</Button>
+                  <Button
+                    className={classes.estimateButton}
+                    variant="contained"
+                  >
+                    Free Estimate
+                  </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined">
-                    Learn More
-                    <ButtonArrow width={15} height={15} fill="red" />
+                  <Button
+                    className={classes.learnButtonHero}
+                    variant="outlined"
+                  >
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow
+                      width={15}
+                      height={15}
+                      fill={theme.palette.common.primaryColor}
+                    />
                   </Button>
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item>
+            <Grid sm item className={classes.animation}>
               <Lottie options={defaultOptions} height={'100%'} width={'100%'} />
             </Grid>
           </Grid>
