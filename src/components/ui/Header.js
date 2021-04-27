@@ -33,6 +33,10 @@ function ElevationScroll(props) {
   });
 }
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
@@ -126,6 +130,10 @@ const useStyles = makeStyles(theme => ({
     zIndex: theme.zIndex.modal + 1,
   },
 }));
+
+//****************************************************
+// HEADER COMPONENT
+//****************************************************
 
 const Header = ({ value, setValue, selectedIndex, setSelectedIndex }) => {
   const classes = useStyles();

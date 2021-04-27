@@ -9,6 +9,10 @@ import facebook from '../../assets/facebook.svg';
 import twitter from '../../assets/twitter.svg';
 import instagram from '../../assets/instagram.svg';
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   footer: {
     backgroundColor: theme.palette.common.primaryColor,
@@ -56,6 +60,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
+
+//****************************************************
+// FOOTER COMPONENT
+//****************************************************
 
 const Footer = ({ setValue, setSelectedIndex }) => {
   const classes = useStyles();
