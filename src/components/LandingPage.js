@@ -9,6 +9,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+import CallToAction from './ui/CallToAction';
+
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileIcon from '../assets/mobileIcon.svg';
@@ -180,7 +182,7 @@ const LandingPage = () => {
                     className={classes.learnButtonHero}
                     variant="outlined"
                   >
-                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <span style={{ marginRight: 5 }}>Learn More</span>
                     <ButtonArrow
                       width={15}
                       height={15}
@@ -220,7 +222,7 @@ const LandingPage = () => {
               <span className={classes.specialText}>celebration</span> .
             </Typography>
             <Button className={classes.learnButton} variant="outlined">
-              <span style={{ marginRight: 10 }}>Learn More</span>
+              <span style={{ marginRight: 5 }}>Learn More</span>
               <ButtonArrow
                 width={15}
                 height={15}
@@ -260,7 +262,7 @@ const LandingPage = () => {
               {matchesSM ? null : <br />}with either mobile platform.
             </Typography>
             <Button className={classes.learnButton} variant="outlined">
-              <span style={{ marginRight: 10 }}>Learn More</span>
+              <span style={{ marginRight: 5 }}>Learn More</span>
               <ButtonArrow
                 width={15}
                 height={15}
@@ -300,7 +302,7 @@ const LandingPage = () => {
               Optimized for Search Engines, built for speed.
             </Typography>
             <Button className={classes.learnButton} variant="outlined">
-              <span style={{ marginRight: 10 }}>Learn More</span>
+              <span style={{ marginRight: 5 }}>Learn More</span>
               <ButtonArrow
                 width={15}
                 height={15}
@@ -344,7 +346,7 @@ const LandingPage = () => {
                       a recipe for revolution.
                     </Typography>
                     <Button className={classes.learnButton} variant="outlined">
-                      <span style={{ marginRight: 10 }}>Learn More</span>
+                      <span style={{ marginRight: 5 }}>Learn More</span>
                       <ButtonArrow
                         width={15}
                         height={15}
@@ -398,7 +400,7 @@ const LandingPage = () => {
                       variant="outlined"
                       style={{ color: 'white', borderColor: 'white' }}
                     >
-                      <span style={{ marginRight: 10 }}>Learn More</span>
+                      <span style={{ marginRight: 5 }}>Learn More</span>
                       <ButtonArrow width={15} height={15} fill="white" />
                     </Button>
                   </Grid>
@@ -423,7 +425,7 @@ const LandingPage = () => {
                       variant="outlined"
                       style={{ color: 'white', borderColor: 'white' }}
                     >
-                      <span style={{ marginRight: 10 }}>Learn More</span>
+                      <span style={{ marginRight: 5 }}>Learn More</span>
                       <ButtonArrow width={15} height={15} fill="white" />
                     </Button>
                   </Grid>
@@ -433,6 +435,12 @@ const LandingPage = () => {
 
             <div className={classes.infoBackground} />
           </Grid>
+        </Grid>
+
+        {/*----- The Call To Action Block -----*/}
+
+        <Grid item>
+          <CallToAction />
         </Grid>
       </Grid>
     </>
