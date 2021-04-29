@@ -11,6 +11,10 @@ import customSoftwareIcon from '../../assets/Custom Software Icon.svg';
 import mobileIcon from '../../assets/mobileIcon.svg';
 import websiteIcon from '../../assets/websiteIcon.svg';
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   learnButton: {
     ...theme.typography.learnButton,
@@ -36,12 +40,17 @@ const useStyles = makeStyles(theme => ({
     },
   },
   serviceContainer: {
-    marginTop: '12em',
+    marginTop: '5em',
     [theme.breakpoints.down('sm')]: {
       padding: 25,
+      marginTop: '2em',
     },
   },
 }));
+
+//****************************************************
+// SERVICES COMPONENT
+//****************************************************
 
 const Services = ({ setValue, setSelectedIndex }) => {
   const classes = useStyles();
@@ -50,6 +59,18 @@ const Services = ({ setValue, setSelectedIndex }) => {
 
   return (
     <Grid container direction="column">
+      <Grid
+        item
+        style={{
+          marginLeft: matchesSM ? 0 : '5em',
+          marginTop: matchesSM ? '2em' : '5em',
+        }}
+      >
+        <Typography variant="h2" align={matchesSM ? 'center' : undefined}>
+          Services
+        </Typography>
+      </Grid>
+
       {/*----- Custom Software Block -----*/}
 
       <Grid
@@ -62,6 +83,7 @@ const Services = ({ setValue, setSelectedIndex }) => {
           item
           style={{
             textAlign: matchesSM ? 'center' : undefined,
+            width: matchesSM ? undefined : '35em',
           }}
         >
           <Typography variant="h4">Custom Software Development</Typography>
@@ -95,6 +117,7 @@ const Services = ({ setValue, setSelectedIndex }) => {
             className={classes.icon}
             alt="Custom Software Icon"
             src={customSoftwareIcon}
+            width="250em"
           />
         </Grid>
       </Grid>
@@ -112,6 +135,7 @@ const Services = ({ setValue, setSelectedIndex }) => {
           style={{
             marginLeft: matchesSM ? 0 : '5em',
             textAlign: matchesSM ? 'center' : undefined,
+            width: matchesSM ? undefined : '35em',
           }}
         >
           <Typography variant="h4">Mobile App Development</Typography>
@@ -145,6 +169,7 @@ const Services = ({ setValue, setSelectedIndex }) => {
             className={classes.icon}
             alt="Mobile App Development Icon"
             src={mobileIcon}
+            width="250em"
           />
         </Grid>
       </Grid>
@@ -156,11 +181,13 @@ const Services = ({ setValue, setSelectedIndex }) => {
         container
         justify={matchesSM ? 'center' : 'flex-end'}
         direction="row"
+        style={{ marginBottom: matchesSM ? '2em' : '5em' }}
       >
         <Grid
           item
           style={{
             textAlign: matchesSM ? 'center' : undefined,
+            width: matchesSM ? undefined : '35em',
           }}
         >
           <Typography variant="h4">Website Development</Typography>
@@ -193,6 +220,7 @@ const Services = ({ setValue, setSelectedIndex }) => {
             className={classes.icon}
             alt="Website Development Icon"
             src={websiteIcon}
+            width="250em"
           />
         </Grid>
       </Grid>
