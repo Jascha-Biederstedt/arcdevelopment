@@ -418,7 +418,6 @@ const LandingPage = ({ setValue, setSelectedIndex }) => {
                 textAlign: matchesXS ? 'center' : 'inherit',
               }}
               direction={matchesXS ? 'column' : 'row'}
-              spacing={matchesXS ? 10 : 0}
             >
               <Grid
                 item
@@ -427,7 +426,11 @@ const LandingPage = ({ setValue, setSelectedIndex }) => {
                   marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em',
                 }}
               >
-                <Grid container direction="column">
+                <Grid
+                  container
+                  style={{ marginBottom: matchesXS ? '10em' : 0 }}
+                  direction="column"
+                >
                   <Typography variant="h2" style={{ color: 'white' }}>
                     About Us
                   </Typography>
