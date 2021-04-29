@@ -213,6 +213,8 @@ const Header = ({ value, setValue, selectedIndex, setSelectedIndex }) => {
             }
           }
           break;
+        case '/estimate':
+          setValue(5);
         default:
           break;
       }
