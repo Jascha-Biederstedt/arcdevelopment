@@ -6,7 +6,8 @@ import theme from './ui/Theme';
 import Header from './ui/Header';
 import Footer from './ui/Footer';
 import LandingPage from './LandingPage';
-import Services from './ui/Services';
+import Services from './Services';
+import CustomSoftware from './CustomSoftware';
 
 const App = () => {
   const [value, setValue] = useState(0);
@@ -47,7 +48,13 @@ const App = () => {
           <Route
             exact
             path="/customsoftware"
-            component={() => <div>Custome Software</div>}
+            render={props => (
+              <CustomSoftware
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
           />
           <Route
             exact

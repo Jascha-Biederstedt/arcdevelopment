@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import ButtonArrow from './ButtonArrow';
-import customSoftwareIcon from '../../assets/Custom Software Icon.svg';
-import mobileIcon from '../../assets/mobileIcon.svg';
-import websiteIcon from '../../assets/websiteIcon.svg';
+import ButtonArrow from './ui/ButtonArrow';
+import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileIcon from '../assets/mobileIcon.svg';
+import websiteIcon from '../assets/websiteIcon.svg';
 
 //****************************************************
 // STYLES
