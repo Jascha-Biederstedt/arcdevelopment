@@ -37,6 +37,9 @@ const useStyles = makeStyles(theme => ({
   paragraphContainer: {
     maxWidth: '30em',
   },
+  rowContainer: {
+    marginTop: '10em',
+  },
 }));
 
 //****************************************************
@@ -47,6 +50,7 @@ const Websites = ({ setValue, setSelectedIndex }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   return (
@@ -117,28 +121,181 @@ const Websites = ({ setValue, setSelectedIndex }) => {
           </Grid>
         </Hidden>
       </Grid>
-      <Grid item container direction="row" alignItems="center">
+      <Grid
+        item
+        container
+        direction={matchesSM ? 'column' : 'row'}
+        alignItems="center"
+        className={classes.rowContainer}
+      >
         <Grid item>
           <Grid container direction="column">
             <Grid item>
-              <Typography variant="h4" gutterBottom>
+              <Typography
+                align={matchesSM ? 'center' : undefined}
+                variant="h4"
+                gutterBottom
+              >
                 Analytics
               </Typography>
             </Grid>
             <Grid item>
               <img
                 src={analytics}
-                style={{ marginLeft: '-2.75em' }}
+                style={{
+                  marginLeft: matchesSM ? undefined : '-2.75em',
+                  marginBottom: matchesSM ? '1.5em' : undefined,
+                }}
                 alt="Graph with magnifying glass revealing 1's and 0's"
               />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant="body1" className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer}>
+          <Typography align={matchesSM ? 'center' : undefined} variant="body1">
             Knowledge is power, and data ist 21st century gold. Analyzing this
             data can reveal hidden patterns and trends in your business,
             empowering you to make smarter decisions with measurable effects.
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        container
+        direction={matchesSM ? 'column' : 'row'}
+        alignItems="center"
+        justify="flex-end"
+        className={classes.rowContainer}
+      >
+        <Grid item>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="h4" align="center" gutterBottom>
+                E-Commerce
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img
+                style={{ marginBottom: matchesSM ? '1.5em' : undefined }}
+                src={ecommerce}
+                alt="World outline made of dollar signs"
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          style={{ marginLeft: matchesSM ? undefined : '1em' }}
+          className={classes.paragraphContainer}
+        >
+          <Typography
+            align={matchesSM ? 'center' : undefined}
+            variant="body1"
+            paragraph
+          >
+            It's no secret that people like to shop online.
+          </Typography>
+          <Typography
+            align={matchesSM ? 'center' : undefined}
+            variant="body1"
+            paragraph
+          >
+            In 2017 over $2.3 trillion was spent in e-commerce, and it's time
+            for your slice of that pie.
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        container
+        direction={matchesSM ? 'column' : 'row'}
+        alignItems="center"
+        className={classes.rowContainer}
+      >
+        <Grid item>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography
+                align={matchesSM ? 'center' : undefined}
+                variant="h4"
+                gutterBottom
+              >
+                Outreach
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img
+                style={{ marginBottom: matchesSM ? '1.5em' : undefined }}
+                src={outreach}
+                alt="Megaphone"
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          style={{ marginLeft: matchesSM ? undefined : '1em' }}
+          className={classes.paragraphContainer}
+        >
+          <Typography align={matchesSM ? 'center' : undefined} variant="body1">
+            Draw people in with a dazzling website. Showing off your products
+            online is a great way to help customers decide what's right for them
+            before visiting in person.
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid
+        item
+        container
+        direction={matchesSM ? 'column' : 'row'}
+        alignItems="center"
+        justify="flex-end"
+        className={classes.rowContainer}
+      >
+        <Grid item>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="h4" align="center" gutterBottom>
+                Search Engine
+                <br />
+                Optimization
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img
+                style={{ marginBottom: matchesSM ? '1.5em' : undefined }}
+                src={seo}
+                alt="Website standing on winner's podium"
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          style={{ marginLeft: matchesSM ? undefined : '1em' }}
+          className={classes.paragraphContainer}
+        >
+          <Typography
+            align={matchesSM ? 'center' : undefined}
+            variant="body1"
+            paragraph
+          >
+            How often have you ever been to the second page of Google results?
+          </Typography>
+          <Typography
+            align={matchesSM ? 'center' : undefined}
+            variant="body1"
+            paragraph
+          >
+            If you're like us, probably never.
+          </Typography>
+          <Typography
+            align={matchesSM ? 'center' : undefined}
+            variant="body1"
+            paragraph
+          >
+            Customers don't go there either, so we make sure your webiste is
+            designed to end up on top.
           </Typography>
         </Grid>
       </Grid>
