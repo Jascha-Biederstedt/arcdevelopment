@@ -18,6 +18,10 @@ import engagement from '../assets/increaseEngagement.svg';
 
 import integrationAnimation from '../animations/integrationAnimation/data.json';
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   heading: {
     maxWidth: '40em',
@@ -32,6 +36,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
+
+//****************************************************
+// MOBILE APP DEVELOPMENT COMPONENT
+//****************************************************
 
 const MobileApps = ({ setValue, setSelectedIndex }) => {
   const classes = useStyles();

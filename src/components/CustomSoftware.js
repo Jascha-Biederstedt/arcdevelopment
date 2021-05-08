@@ -22,6 +22,10 @@ import scaleAnimation from '../animations/scaleAnimation/data.json';
 import automationAnimation from '../animations/automationAnimation/data.json';
 import uxAnimation from '../animations/uxAnimation/data';
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   heading: {
     maxWidth: '40em',
@@ -39,6 +43,10 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '40em',
   },
 }));
+
+//****************************************************
+// CUSTOM SOFTWARE COMPONENT
+//****************************************************
 
 const CustomSoftware = ({ setSelectedIndex, setValue }) => {
   const classes = useStyles();
