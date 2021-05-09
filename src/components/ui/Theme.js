@@ -78,6 +78,24 @@ const theme = createMuiTheme({
       fontWeight: 'bold',
     },
   },
+  overrides: {
+    MuiInputLabel: {
+      root: {
+        color: primaryColor,
+        fontSize: '1rem',
+      },
+    },
+    MuiInput: {
+      underline: {
+        '&:before': {
+          borderBottom: `2px solid ${primaryColor}`,
+        },
+        '&:hover:not($disabled):not($focused):not($error):before': {
+          borderBottom: `2px solid ${primaryColor}`,
+        },
+      },
+    },
+  },
 });
 
 export default theme;
