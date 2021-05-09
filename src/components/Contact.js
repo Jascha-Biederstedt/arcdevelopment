@@ -75,6 +75,9 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,
     },
+    [theme.breakpoints.down('xs')]: {
+      width: 200,
+    },
   },
 }));
 
@@ -87,6 +90,7 @@ const Contact = ({ setValue }) => {
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const [name, setName] = useState('');
 
@@ -292,11 +296,25 @@ const Contact = ({ setValue }) => {
           </Grid>
         </Grid>
       </Grid>
-      <Dialog open={open} onClose={closeDialog}>
+      <Dialog
+        open={open}
+        onClose={closeDialog}
+        PaperProps={{
+          style: {
+            padding: matchesXS
+              ? '0.5em'
+              : matchesSM
+              ? '2em'
+              : matchesMD
+              ? '2em 5em'
+              : '5em 10em',
+          },
+        }}
+      >
         <DialogContent>
           <Grid container direction="column">
             <Grid item>
-              <Typography variant="h4" gutterBottom>
+              <Typography variant="h4" align="center" gutterBottom>
                 Confirm Message
               </Typography>
             </Grid>
@@ -344,9 +362,13 @@ const Contact = ({ setValue }) => {
               />
             </Grid>
           </Grid>
-          <Grid item container>
+          <Grid item container style={{ marginTop: '2em' }} alignItems="center">
             <Grid item>
-              <Button color="primary" onClick={closeDialog}>
+              <Button
+                color="primary"
+                onClick={closeDialog}
+                style={{ fontWeight: 300 }}
+              >
                 Cancel
               </Button>
             </Grid>
