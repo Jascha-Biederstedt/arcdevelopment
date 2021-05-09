@@ -10,6 +10,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ButtonArrow from './ui/ButtonArrow';
 
 import background from '../assets/background.jpg';
+import mobileBackground from '../assets/mobileBackground.jpg';
 import phoneIcon from '../assets/phone.svg';
 import emailIcon from '../assets/email.svg';
 import airplane from '../assets/send.svg';
@@ -26,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     height: '60em ',
     paddingBottom: '10em',
+    [theme.breakpoints.down('md')]: {
+      backgroundImage: `url(${mobileBackground})`,
+    },
   },
   learnButton: {
     ...theme.typography.learnButton,
@@ -33,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     height: 35,
     padding: 10,
     marginTop: '1em',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: '2em',
     },
   },
@@ -49,7 +53,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: 0,
       marginRight: 0,
       marginTop: '2em',
@@ -79,6 +83,7 @@ const useStyles = makeStyles(theme => ({
 const Contact = ({ setValue }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [name, setName] = useState('');
@@ -94,20 +99,26 @@ const Contact = ({ setValue }) => {
         direction="column"
         alignItems="center"
         justify="center"
+        style={{ margin: matchesSM ? '2em' : matchesMD ? '5em 0' : 0 }}
         lg={4}
         xl={3}
       >
         <Grid item>
           <Grid item container direction="column">
             <Grid item>
-              <Typography variant="h2" style={{ lineHeight: 1 }}>
+              <Typography
+                variant="h2"
+                align={matchesMD ? 'center' : undefined}
+                style={{ lineHeight: 1 }}
+              >
                 Contact us
               </Typography>
               <Typography
+                align={matchesMD ? 'center' : undefined}
                 variant="body1"
                 style={{ color: theme.palette.common.primaryColor }}
               >
-                We're waiting
+                We're waiting.
               </Typography>
             </Grid>
             <Grid item container style={{ marginTop: '2em' }}>
@@ -156,7 +167,7 @@ const Contact = ({ setValue }) => {
               direction="column"
               style={{ maxWidth: '20em' }}
             >
-              <Grid item>
+              <Grid item style={{ marginBottom: '0.8em' }}>
                 <TextField
                   label="Name"
                   id="name"
@@ -165,7 +176,7 @@ const Contact = ({ setValue }) => {
                   onChange={event => setName(event.target.value)}
                 />
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginBottom: '0.8em' }}>
                 <TextField
                   label="Email"
                   id="email"
@@ -174,7 +185,7 @@ const Contact = ({ setValue }) => {
                   onChange={event => setEmail(event.target.value)}
                 />
               </Grid>
-              <Grid item>
+              <Grid item style={{ marginBottom: '0.8em' }}>
                 <TextField
                   label="Phone"
                   id="phone"
@@ -212,7 +223,9 @@ const Contact = ({ setValue }) => {
       <Grid
         item
         container
+        direction={matchesMD ? 'column' : 'row'}
         alignItems="center"
+        justify={matchesMD ? 'center' : undefined}
         className={classes.background}
         lg={8}
         xl={9}
@@ -220,21 +233,25 @@ const Contact = ({ setValue }) => {
         <Grid
           item
           style={{
-            marginLeft: matchesSM ? 0 : '5em',
-            textAlign: matchesSM ? 'center' : 'inherit',
+            marginLeft: matchesMD ? 0 : '5em',
+            textAlign: matchesMD ? 'center' : 'inherit',
           }}
         >
           <Grid container direction="column">
             <Grid item>
-              <Typography variant="h2">
+              <Typography variant="h2" align={matchesMD ? 'center' : undefined}>
                 Simple Software.
                 <br />
                 Revolutionary Results.
               </Typography>
-              <Typography variant="subtitle2" style={{ fontSize: '1.5rem' }}>
+              <Typography
+                variant="subtitle2"
+                align={matchesMD ? 'center' : undefined}
+                style={{ fontSize: '1.5rem' }}
+              >
                 Take advantage of the 21st Century.
               </Typography>
-              <Grid container justify={matchesSM ? 'center' : undefined} item>
+              <Grid container justify={matchesMD ? 'center' : undefined} item>
                 <Button
                   className={classes.learnButton}
                   variant="outlined"
