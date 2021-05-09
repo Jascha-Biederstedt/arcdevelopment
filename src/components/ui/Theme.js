@@ -63,6 +63,11 @@ const theme = createMuiTheme({
       fontWeight: 300,
       color: tertiaryColor,
     },
+    caption: {
+      fontSize: '1em',
+      fontWeight: 300,
+      color: tertiaryColor,
+    },
     learnButton: {
       borderColor: primaryColor,
       color: primaryColor,

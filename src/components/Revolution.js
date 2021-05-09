@@ -18,6 +18,10 @@ import technologyAnimation from '../animations/technologyAnimation/data.json';
 
 import CallToAction from './ui/CallToAction';
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   rowContainer: {
     paddingLeft: '5em',
@@ -28,6 +32,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
+
+//****************************************************
+// REVOLUTION COMPONENT
+//****************************************************
 
 const Revolution = ({ setValue }) => {
   const classes = useStyles();

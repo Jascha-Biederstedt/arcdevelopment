@@ -13,6 +13,10 @@ import puppy from '../assets/puppy.svg';
 
 import CallToAction from './ui/CallToAction';
 
+//****************************************************
+// STYLES
+//****************************************************
+
 const useStyles = makeStyles(theme => ({
   missionStatement: {
     fontStyle: 'italic',
@@ -42,6 +46,10 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }));
+
+//****************************************************
+// ABOUT COMPONENT
+//****************************************************
 
 const About = ({ setValue }) => {
   const classes = useStyles();
