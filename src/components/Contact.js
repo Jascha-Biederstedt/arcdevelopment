@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Switch } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -87,9 +87,47 @@ const Contact = ({ setValue }) => {
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [name, setName] = useState('');
+
   const [email, setEmail] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
+
   const [phone, setPhone] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
+
   const [message, setMessage] = useState('');
+
+  const onChange = event => {
+    let valid;
+
+    switch (event.target.id) {
+      case 'email':
+        setEmail(event.target.value);
+        valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setEmailHelper('Invalid email');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+
+      case 'phone':
+        setPhone(event.target.value);
+        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
+          event.target.value
+        );
+        if (!valid) {
+          setPhoneHelper('Invalid phone number');
+        } else {
+          setPhoneHelper('');
+        }
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <Grid container direction="row">
@@ -137,7 +175,12 @@ const Contact = ({ setValue }) => {
                     fontSize: '1rem',
                   }}
                 >
-                  (555) 123-4567
+                  <a
+                    href="tel:5555555555"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    (555) 123-4567
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -157,7 +200,12 @@ const Contact = ({ setValue }) => {
                     fontSize: '1rem',
                   }}
                 >
-                  zachary@gmail.com
+                  <a
+                    href="mailto:zachary@gmail.com"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    zachary@gmail.com
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -180,18 +228,22 @@ const Contact = ({ setValue }) => {
                 <TextField
                   label="Email"
                   id="email"
+                  error={emailHelper.length !== 0}
+                  helperText={emailHelper}
                   fullWidth
                   value={email}
-                  onChange={event => setEmail(event.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
               <Grid item style={{ marginBottom: '0.8em' }}>
                 <TextField
                   label="Phone"
                   id="phone"
+                  error={phoneHelper.length !== 0}
+                  helperText={phoneHelper}
                   fullWidth
                   value={phone}
-                  onChange={event => setPhone(event.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
             </Grid>
@@ -208,7 +260,18 @@ const Contact = ({ setValue }) => {
               />
             </Grid>
             <Grid item container justify="center" style={{ marginTop: '2em' }}>
-              <Button variant="contained" className={classes.sendButton}>
+              <Button
+                disabled={
+                  name.length === 0 ||
+                  email.length === 0 ||
+                  phone.length === 0 ||
+                  message.length === 0 ||
+                  emailHelper.length !== 0 ||
+                  phoneHelper.length !== 0
+                }
+                variant="contained"
+                className={classes.sendButton}
+              >
                 Send Message
                 <img
                   src={airplane}
