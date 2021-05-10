@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Lottie from 'react-lottie';
 import { cloneDeep } from 'lodash';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -396,6 +396,8 @@ const Estimate = () => {
   const classes = useStyles();
   const theme = useTheme();
 
+  const [questions, setQuestions] = useState(softwareQuestions);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -403,6 +405,30 @@ const Estimate = () => {
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
+  };
+
+  const nextQuestion = () => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active);
+    const activeIndex = currentlyActive[0].id - 1;
+    const nextIndex = activeIndex + 1;
+
+    newQuestions[activeIndex] = { ...currentlyActive[0], active: false };
+    newQuestions[nextIndex] = { ...newQuestions[nextIndex], active: true };
+
+    setQuestions(newQuestions);
+  };
+
+  const previousQuestion = () => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active);
+    const activeIndex = currentlyActive[0].id - 1;
+    const nextIndex = activeIndex - 1;
+
+    newQuestions[activeIndex] = { ...currentlyActive[0], active: false };
+    newQuestions[nextIndex] = { ...newQuestions[nextIndex], active: true };
+
+    setQuestions(newQuestions);
   };
 
   return (
@@ -419,7 +445,7 @@ const Estimate = () => {
         </Grid>
       </Grid>
       <Grid item container direction="column" lg alignItems="center">
-        {defaultQuestions
+        {questions
           .filter(question => question.active)
           .map((question, index) => (
             <React.Fragment key={index}>
@@ -472,13 +498,17 @@ const Estimate = () => {
           item
           container
           justify={'space-between'}
-          style={{ marginTop: '3em', width: '15em' }}
+          style={{ marginTop: '3em', width: '18em' }}
         >
           <Grid item>
-            <img src={backArrow} alt="Previous question" />
+            <IconButton onClick={previousQuestion}>
+              <img src={backArrow} alt="Previous question" />
+            </IconButton>
           </Grid>
           <Grid item>
-            <img src={forwardArrow} alt="Next question" />
+            <IconButton onClick={nextQuestion}>
+              <img src={forwardArrow} alt="Next question" />
+            </IconButton>
           </Grid>
         </Grid>
         <Grid item>
