@@ -48,6 +48,12 @@ const theme = createMuiTheme({
       color: primaryColor,
       fontWeight: 700,
     },
+    h6: {
+      fontFamily: 'Raleway',
+      fontWeight: 500,
+      color: primaryColor,
+      lineHeight: 1.2,
+    },
     subtitle1: {
       fontSize: '1.25rem',
       fontWeight: 300,
