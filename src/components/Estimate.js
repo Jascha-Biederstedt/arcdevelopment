@@ -73,6 +73,12 @@ const useStyles = makeStyles(theme => ({
     marginTop: '5em',
     borderRadius: 5,
   },
+  specialText: {
+    fontFamily: 'Raleway',
+    fontWeight: 700,
+    fontSize: '1.5rem',
+    color: theme.palette.common.secondaryColor,
+  },
 }));
 
 const defaultQuestions = [
@@ -419,6 +425,8 @@ const Estimate = () => {
 
   const [message, setMessage] = useState('');
 
+  const [total, setTotal] = useState(0);
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -543,6 +551,29 @@ const Estimate = () => {
     }
   };
 
+  const getTotal = () => {
+    let cost = 0;
+
+    const selections = questions
+      .map(question => question.options.filter(option => option.selected))
+      .filter(question => question.length > 0);
+
+    selections.map(options => options.map(option => (cost += option.cost)));
+
+    if (questions.length > 2) {
+      const userCost = questions
+        .filter(question => question.title === 'How many users do you expect?')
+        .map(question =>
+          question.options.filter(option => option.selected)
+        )[0][0].cost;
+
+      cost -= userCost;
+      cost *= userCost;
+    }
+
+    setTotal(cost);
+  };
+
   return (
     <Grid container className={classes.mainContainer}>
       <Grid item container direction="column" lg>
@@ -659,7 +690,10 @@ const Estimate = () => {
           <Button
             variant="contained"
             className={classes.estimateButton}
-            onClick={() => setDialogOpen(true)}
+            onClick={() => {
+              setDialogOpen(true);
+              getTotal();
+            }}
           >
             Get Estimate
           </Button>
@@ -721,7 +755,11 @@ const Estimate = () => {
               </Grid>
               <Grid item>
                 <Typography variant="body1" paragraph>
-                  We can create this digital solution for an estimated
+                  We can create this digital solution for an estimated{' '}
+                  <span className={classes.specialText}>
+                    ${total.toFixed(2)}
+                  </span>
+                  .
                 </Typography>
                 <Typography variant="body1" paragraph>
                   Fill out your name, phone number, and email, place your
