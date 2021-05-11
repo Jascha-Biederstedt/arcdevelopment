@@ -451,6 +451,18 @@ const Estimate = () => {
     }
   };
 
+  const handleSelect = id => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active);
+    const activeIndex = currentlyActive[0].id - 1;
+
+    const newSelected = newQuestions[activeIndex].options[id - 1];
+
+    newSelected.selected = !newSelected.selected;
+
+    setQuestions(newQuestions);
+  };
+
   return (
     <Grid container className={classes.mainContainer}>
       <Grid item container direction="column" lg>
@@ -477,6 +489,7 @@ const Estimate = () => {
                     fontWeight: 300,
                     marginTop: '3em',
                     fontSize: '2.25rem',
+                    lineHeight: 1.25,
                   }}
                 >
                   {question.title}
@@ -492,8 +505,23 @@ const Estimate = () => {
               </Grid>
               <Grid item container>
                 {question.options.map(option => (
-                  <Grid item container direction="column" md>
-                    <Grid item style={{ maxWidth: '12em' }}>
+                  <Grid
+                    item
+                    container
+                    direction="column"
+                    md
+                    component={Button}
+                    onClick={() => handleSelect(option.id)}
+                    style={{
+                      display: 'grid',
+                      textTransform: 'none',
+                      borderRadius: 0,
+                      backgroundColor: option.selected
+                        ? theme.palette.common.secondaryColor
+                        : null,
+                    }}
+                  >
+                    <Grid item style={{ maxWidth: '14em' }}>
                       <Typography variant="h6" align="center" gutterBottom>
                         {option.title}
                       </Typography>
