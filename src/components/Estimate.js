@@ -121,7 +121,7 @@ const softwareQuestions = [
       },
       {
         id: 2,
-        title: 'iOS/Android App Development',
+        title: 'Mobile App Development',
         subtitle: null,
         icon: mobile,
         iconAlt: 'outlines of phones and tablets',
@@ -333,7 +333,7 @@ const websiteQuestions = [
       },
       {
         id: 2,
-        title: 'iOS/Android App Development',
+        title: 'Mobile App Development',
         subtitle: null,
         icon: mobile,
         iconAlt: 'outlines of phones and tablets',
@@ -431,6 +431,26 @@ const Estimate = () => {
     setQuestions(newQuestions);
   };
 
+  const navigationPreviousDisabled = () => {
+    const currentlyActive = questions.filter(question => question.active);
+
+    if (currentlyActive[0].id === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const navigationNextDisabled = () => {
+    const currentlyActive = questions.filter(question => question.active);
+
+    if (currentlyActive[0].id === questions[questions.length - 1].id) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <Grid container className={classes.mainContainer}>
       <Grid item container direction="column" lg>
@@ -501,13 +521,29 @@ const Estimate = () => {
           style={{ marginTop: '3em', width: '18em' }}
         >
           <Grid item>
-            <IconButton onClick={previousQuestion}>
-              <img src={backArrow} alt="Previous question" />
+            <IconButton
+              disabled={navigationPreviousDisabled()}
+              onClick={previousQuestion}
+            >
+              <img
+                src={
+                  navigationPreviousDisabled() ? backArrowDisabled : backArrow
+                }
+                alt="Previous question"
+              />
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton onClick={nextQuestion}>
-              <img src={forwardArrow} alt="Next question" />
+            <IconButton
+              disabled={navigationNextDisabled()}
+              onClick={nextQuestion}
+            >
+              <img
+                src={
+                  navigationNextDisabled() ? forwardArrowDisabled : forwardArrow
+                }
+                alt="Next question"
+              />
             </IconButton>
           </Grid>
         </Grid>
