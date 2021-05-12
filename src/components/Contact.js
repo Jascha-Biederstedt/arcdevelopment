@@ -300,7 +300,7 @@ const Contact = ({ setValue }) => {
       <Dialog
         style={{ zIndex: 1302 }}
         open={open}
-        fullScreen={matchesXS}
+        fullScreen={matchesSM}
         onClose={closeDialog}
         PaperProps={{
           style: {
@@ -317,7 +317,12 @@ const Contact = ({ setValue }) => {
         <DialogContent>
           <Grid container direction="column">
             <Grid item>
-              <Typography variant="h4" align="center" gutterBottom>
+              <Typography
+                variant="h4"
+                align="center"
+                gutterBottom
+                style={{ margin: matchesSM ? '1em 0' : '0 0 1em' }}
+              >
                 Confirm Message
               </Typography>
             </Grid>
@@ -352,7 +357,7 @@ const Contact = ({ setValue }) => {
                 onChange={onChange}
               />
             </Grid>
-            <Grid item style={{ maxWidth: matchesXS ? '100%' : '20em' }}>
+            <Grid item style={{ maxWidth: matchesSM ? '100%' : '20em' }}>
               <TextField
                 InputProps={{ disableUnderline: true }}
                 value={message}
