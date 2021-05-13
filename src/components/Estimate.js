@@ -38,7 +38,6 @@ import globe from '../assets/globe.svg';
 import biometrics from '../assets/biometrics.svg';
 
 import estimateAnimation from '../animations/estimateAnimation/data.json';
-import { Block } from '@material-ui/icons';
 
 //****************************************************
 // STYLES
@@ -75,6 +74,7 @@ const useStyles = makeStyles(theme => ({
   message: {
     border: `2px solid ${theme.palette.common.primaryColor}`,
     margin: '3em 0 2em',
+    padding: '0.5em',
     borderRadius: 5,
   },
   specialText: {
@@ -669,6 +669,30 @@ const Estimate = () => {
     }
   };
 
+  const estimateDisabled = () => {
+    let disabled = true;
+
+    const emptySelections = questions
+      .map(question => question.options.filter(option => option.selected))
+      .filter(question => question.length === 0);
+
+    if (questions.length === 2) {
+      if (emptySelections.length === 1) {
+        disabled = false;
+      }
+    } else if (questions.length === 1) {
+      disabled = true;
+    } else if (
+      emptySelections.length < 3 &&
+      questions[questions.length - 1].options.filter(option => option.selected)
+        .length > 0
+    ) {
+      disabled = false;
+    }
+
+    return disabled;
+  };
+
   const softwareSelection = (
     <Grid container direction="column" style={{ marginTop: '3em' }}>
       <Grid
@@ -836,12 +860,13 @@ const Estimate = () => {
                 </Typography>
               </Grid>
               <Grid item container>
-                {question.options.map(option => (
+                {question.options.map((option, index) => (
                   <Grid
                     item
                     container
                     direction="column"
                     md
+                    key={index}
                     component={Button}
                     onClick={() => handleSelect(option.id)}
                     style={{
@@ -911,6 +936,7 @@ const Estimate = () => {
           <Button
             variant="contained"
             className={classes.estimateButton}
+            disabled={estimateDisabled()}
             onClick={() => {
               setDialogOpen(true);
               getTotal();
@@ -991,6 +1017,7 @@ const Estimate = () => {
                   id="message"
                   fullWidth
                   className={classes.message}
+                  placeholder="Tell us more about your project"
                   multiline
                   rows={10}
                   onChange={event => setMessage(event.target.value)}
@@ -1000,6 +1027,7 @@ const Estimate = () => {
                 <Typography
                   variant="body1"
                   align={matchesSM ? 'center' : undefined}
+                  style={{ lineHeight: 1.25 }}
                   paragraph
                 >
                   We can create this digital solution for an estimated{' '}
@@ -1037,6 +1065,14 @@ const Estimate = () => {
                   variant="contained"
                   className={classes.estimateButton}
                   style={{ marginLeft: 0 }}
+                  disabled={
+                    name.length === 0 ||
+                    email.length === 0 ||
+                    phone.length === 0 ||
+                    message.length === 0 ||
+                    emailHelper.length !== 0 ||
+                    phoneHelper.length !== 0
+                  }
                 >
                   Place Request
                   <img

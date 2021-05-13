@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -64,6 +64,7 @@ const useStyles = makeStyles(theme => ({
   message: {
     border: `2px solid ${theme.palette.common.primaryColor}`,
     marginTop: '5em',
+    padding: '0.5em',
     borderRadius: 5,
   },
   sendButton: {
@@ -365,6 +366,7 @@ const Contact = ({ setValue }) => {
                 fullWidth
                 className={classes.message}
                 multiline
+                placeholder="Tell us more about your project"
                 rows={10}
                 onChange={event => setMessage(event.target.value)}
               />
